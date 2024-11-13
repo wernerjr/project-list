@@ -58,8 +58,8 @@ export function GitHubProjects() {
             id: repo.id,
             name: repo.name,
             description: repo.description,
-            html_url: repo.url,
-            stargazers_count: repo.stargazerCount,
+            html_url: repo.html_url,
+            stargazers_count: repo.stargazers_count,
             language: repo.primaryLanguage?.name
           }));
           

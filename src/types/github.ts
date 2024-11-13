@@ -34,4 +34,7 @@ export interface GitHubRepo {
   html_url: string;
   stargazers_count: number;
   language: string | null;
+  primaryLanguage?: {
+    name: string;
+  };
 } 
