@@ -1,44 +1,61 @@
-# Portfolio - Werner Jr
+# Meu Portfólio
 
-Portfolio pessoal desenvolvido com Next.js 14, TypeScript e Tailwind CSS, integrado com a API do GitHub para exibir meus projetos de forma dinâmica.
+![GitHub repo size](https://img.shields.io/github/repo-size/seu-usuario/seu-repo)
+![GitHub language count](https://img.shields.io/github/languages/count/seu-usuario/seu-repo)
+![GitHub top language](https://img.shields.io/github/languages/top/seu-usuario/seu-repo)
 
-## 🚀 Tecnologias
+## 🚀 Descrição
 
-- [Next.js 14](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [GitHub GraphQL API](https://docs.github.com/en/graphql)
+Portfolio pessoal desenvolvido para mostrar meus projetos e habilidades como desenvolvedor. Construído com tecnologias modernas para garantir performance e boa experiência do usuário.
 
-## ✨ Funcionalidades
+## 🛠️ Tecnologias
 
-- Design responsivo
-- Tema escuro/claro
-- Listagem dinâmica de projetos do GitHub
-- Ordenação de projetos por nome
-- Filtragem automática de projetos arquivados
-- SEO otimizado
+- Next.js 14
+- TypeScript
+- TailwindCSS
+- GitHub API
+- Framer Motion
+- ESLint
+- Prettier
 
-## 🛠️ Instalação
+## ⚙️ Funcionalidades
 
-Clone o repositório
-git clone https://github.com/wernerjr/github-portfolio.git
-Entre no diretório
-cd github-portfolio
-Instale as dependências
+- ✨ Design responsivo
+- 📱 Interface moderna e intuitiva
+- 🌙 Tema claro/escuro
+- 📊 Integração com GitHub API
+- 🚀 Performance otimizada
+- 📝 Seção de projetos dinâmica
+
+## 🎯 Como executar
+
+# Clone o repositório
+git clone https://github.com/seu-usuario
+
+# Entre no diretório
+cd seu-repo
+
+# Instale as dependências
 npm install
-Configure as variáveis de ambiente
-cp .env.example .env.local
-Inicie o servidor de desenvolvimento
+
+# Execute o projeto
 npm run dev
 
-## 🔑 Variáveis de Ambiente
 
-GITHUB_TOKEN=seu_token_github
+## 📫 Contribuindo
 
-## 🌐 Deploy
-
-O projeto está disponível em: [wernerjr.dev](https://wernerjr.dev)
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/novafuncionalidade`)
+3. Commit suas mudanças (`git commit -m 'Add: nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/novafuncionalidade`)
+5. Abra um Pull Request
 
 ## 📝 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 📱 Contato
+
+- LinkedIn: [Seu Nome](https://linkedin.com/in/seu-perfil)
+- Email: seu-email@exemplo.com
+- Website: [seusite.com](https://seusite.com)
