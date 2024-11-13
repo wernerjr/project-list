@@ -1,43 +1,44 @@
-# Portfolio de Projetos GitHub
+# Portfolio - Werner Jr
 
-Uma interface moderna para exibir projetos do GitHub, construída com Next.js e Tailwind CSS.
+Portfolio pessoal desenvolvido com Next.js 14, TypeScript e Tailwind CSS, integrado com a API do GitHub para exibir meus projetos de forma dinâmica.
 
 ## 🚀 Tecnologias
 
-- Next.js 14
-- React
-- TypeScript
-- Tailwind CSS
-- GitHub API
+- [Next.js 14](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [GitHub GraphQL API](https://docs.github.com/en/graphql)
 
-## 📋 Funcionalidades
+## ✨ Funcionalidades
 
-- Lista projetos públicos do GitHub
-- Exibe descrições personalizadas
-- Mostra tecnologias utilizadas
-- Indica número de estrelas
 - Design responsivo
+- Tema escuro/claro
+- Listagem dinâmica de projetos do GitHub
+- Ordenação de projetos por nome
+- Filtragem automática de projetos arquivados
+- SEO otimizado
 
-## 🛠️ Como executar
+## 🛠️ Instalação
 
-1. Clone o repositório
-
-git clone https://github.com/SEU_USERNAME/NOME_DO_REPOSITORIO.git
-
-2. Instale as dependências
-
+Clone o repositório
+git clone https://github.com/wernerjr/github-portfolio.git
+Entre no diretório
+cd github-portfolio
+Instale as dependências
 npm install
-
-3. Execute o projeto
-
+Configure as variáveis de ambiente
+cp .env.example .env.local
+Inicie o servidor de desenvolvimento
 npm run dev
 
-4. Acesse `http://localhost:3000`
+## 🔑 Variáveis de Ambiente
 
-## 📝 Configuração
+GITHUB_TOKEN=seu_token_github
 
-Substitua `SEU_USERNAME` no arquivo `src/components/GitHubProjects.tsx` pelo seu nome de usuário do GitHub.
+## 🌐 Deploy
 
-## 🤝 Contribuições
+O projeto está disponível em: [wernerjr.dev](https://wernerjr.dev)
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
