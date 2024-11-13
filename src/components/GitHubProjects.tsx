@@ -2,15 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { githubQuery } from '@/utils/github';
-
-interface GitHubRepo {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  stargazers_count: number;
-  language: string;
-}
+import { GithubRepository, GitHubRepo } from '@/types/github';
 
 interface ProjectInfo {
   description: string;
@@ -65,7 +57,7 @@ export function GitHubProjects() {
         }
 
         if (data?.user?.repositories?.nodes) {
-          const mappedRepos = data.user.repositories.nodes.map((repo: any) => ({
+          const mappedRepos = data.user.repositories.nodes.map((repo: GithubRepository) => ({
             id: repo.id,
             name: repo.name,
             description: repo.description,

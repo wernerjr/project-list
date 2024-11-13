@@ -1,3 +1,5 @@
+import { GithubRepository } from '@/types/github';
+
 export const githubQuery = `
   query {
     user(login: "wernerjr") {
@@ -39,4 +41,18 @@ export const githubQuery = `
       }
     }
   }
-`; 
+`;
+
+export const fetchGithubProjects = async () => {
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ query: githubQuery }),
+  });
+
+  const { data } = await response.json();
+  return data?.user?.repositories?.nodes || [];
+}; 
