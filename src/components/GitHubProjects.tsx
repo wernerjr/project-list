@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { githubQuery } from '@/utils/github';
 
 interface GitHubRepo {
   id: number;
@@ -50,19 +51,36 @@ export function GitHubProjects() {
   useEffect(() => {
     async function fetchRepos() {
       try {
-        const response = await fetch('https://api.github.com/users/wernerjr/repos?sort=updated');
-        const data = await response.json();
+        const response = await fetch('/api/github');
+        const responseData = await response.json();
         
-        // Verificar se data é um array
-        if (Array.isArray(data)) {
-          setRepos(data);
+        console.log('Resposta completa:', responseData); // Debug
+
+        const { data } = responseData;
+        
+        if (!data) {
+          console.error('Erro na resposta:', responseData);
+          setError(`Erro na resposta: ${JSON.stringify(responseData.errors)}`);
+          return;
+        }
+
+        if (data?.user?.repositories?.nodes) {
+          const mappedRepos = data.user.repositories.nodes.map((repo: any) => ({
+            id: repo.id,
+            name: repo.name,
+            description: repo.description,
+            html_url: repo.url,
+            stargazers_count: repo.stargazerCount,
+            language: repo.primaryLanguage?.name
+          }));
+          
+          setRepos(mappedRepos);
         } else {
-          console.error('Resposta da API:', data);
           setError('Formato de resposta inválido');
         }
       } catch (error) {
         console.error('Erro ao buscar repositórios:', error);
-        setError('Erro ao carregar repositórios');
+        setError(`Erro ao carregar repositórios: ${error}`);
       } finally {
         setLoading(false);
       }
