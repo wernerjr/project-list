@@ -43,7 +43,7 @@ export const githubQuery = `
   }
 `;
 
-export const fetchGithubProjects = async () => {
+export const fetchGithubProjects = async (): Promise<GithubRepository[]> => {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {

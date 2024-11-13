@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { githubQuery } from '@/utils/github';
-import { GithubRepository, GitHubRepo } from '@/types/github';
+import { useState, useEffect } from 'react';
+import { GitHubRepo } from '@/types/github';
 
 interface ProjectInfo {
   description: string;
@@ -46,8 +45,6 @@ export function GitHubProjects() {
         const response = await fetch('/api/github');
         const responseData = await response.json();
         
-        console.log('Resposta completa:', responseData); // Debug
-
         const { data } = responseData;
         
         if (!data) {
@@ -57,7 +54,7 @@ export function GitHubProjects() {
         }
 
         if (data?.user?.repositories?.nodes) {
-          const mappedRepos = data.user.repositories.nodes.map((repo: GithubRepository) => ({
+          const mappedRepos = data.user.repositories.nodes.map((repo: GitHubRepo) => ({
             id: repo.id,
             name: repo.name,
             description: repo.description,
