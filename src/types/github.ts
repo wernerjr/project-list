@@ -31,11 +31,12 @@ export interface GitHubRepo {
   id: string;
   name: string;
   description: string | null;
-  html_url: string;
-  stargazers_count: number;
+  url: string;
   language: string | null;
+  stargazerCount: number;
+  updatedAt: string;
+  topics?: string[];
   primaryLanguage?: {
     name: string;
   };
-  topics?: string[];
 } 

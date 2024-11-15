@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { GitHubRepo } from '@/types/github';
-import { generateRepoDescription } from '../services/description-generator';
 import { classifyProject } from '../services/classifier';
+import { RepoModal } from './RepoModal';
 
 interface ProjectInfo {
   description: string;
@@ -44,6 +44,7 @@ export function GitHubProjects() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [uniqueCategories, setUniqueCategories] = useState<string[]>([]);
   const [generatedDescriptions, setGeneratedDescriptions] = useState<Record<string, string>>({});
+  const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null);
 
   useEffect(() => {
     async function fetchRepos() {
@@ -60,13 +61,15 @@ export function GitHubProjects() {
         }
 
         if (data?.user?.repositories?.nodes) {
+          console.log('Repos recebidos:', data.user.repositories.nodes);
           const mappedRepos = data.user.repositories.nodes.map((repo: GitHubRepo) => ({
             id: repo.id,
             name: repo.name,
-            description: repo.description,
-            html_url: repo.html_url,
-            stargazers_count: repo.stargazers_count,
-            language: repo.primaryLanguage?.name
+            description: repo.description || 'Sem descrição',
+            html_url: repo.url,
+            stargazers_count: repo.stargazerCount,
+            language: repo.primaryLanguage?.name,
+            updatedAt: repo.updatedAt,
           }));
           
           setRepos(mappedRepos);
@@ -105,25 +108,6 @@ export function GitHubProjects() {
     const unique = Array.from(new Set(categories)).filter(Boolean);
     setUniqueCategories(unique);
   }, [projectCategories]);
-
-  useEffect(() => {
-    async function generateDescriptions() {
-      const descriptions: Record<string, string> = {};
-      
-      for (const repo of repos) {
-        if (!repo.description) {
-          const generatedDescription = await generateRepoDescription(repo);
-          descriptions[repo.id] = generatedDescription;
-        }
-      }
-      
-      setGeneratedDescriptions(descriptions);
-    }
-
-    if (repos.length > 0) {
-      generateDescriptions();
-    }
-  }, [repos]);
 
   if (loading) {
     return (
@@ -188,15 +172,13 @@ export function GitHubProjects() {
           .filter(repo => !selectedCategory || projectCategories[repo.id] === selectedCategory)
           .map((repo) => {
             const details = projectDetails[repo.name];
-            const description = repo.description || generatedDescriptions[repo.id] || 'Gerando descrição através de IA...';
+            const description = repo.description;
             
             return (
-              <a
+              <div
                 key={repo.id}
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200"
+                onClick={() => setSelectedRepo(repo)}
+                className="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 cursor-pointer"
               >
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{repo.name}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-2">
@@ -242,10 +224,17 @@ export function GitHubProjects() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             );
           })}
       </div>
+
+      <RepoModal
+        repo={selectedRepo}
+        generatedDescription={selectedRepo ? generatedDescriptions[selectedRepo.id] : ''}
+        isOpen={!!selectedRepo}
+        onClose={() => setSelectedRepo(null)}
+      />
     </div>
   );
 } 
