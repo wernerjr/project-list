@@ -37,4 +37,5 @@ export interface GitHubRepo {
   primaryLanguage?: {
     name: string;
   };
+  topics?: string[];
 } 
