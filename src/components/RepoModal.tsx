@@ -1,13 +1,12 @@
 import { GitHubRepo } from '@/types/github';
 
 interface RepoModalProps {
-  repo: GitHubRepo;
-  generatedDescription: string;
+  repo: GitHubRepo | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function RepoModal({ repo, generatedDescription, isOpen, onClose }: RepoModalProps) {
+export function RepoModal({ repo, isOpen, onClose }: RepoModalProps) {
   if (!isOpen || !repo) return null;
 
   const formatDate = (dateString: string) => {
@@ -74,7 +73,7 @@ export function RepoModal({ repo, generatedDescription, isOpen, onClose }: RepoM
           </div>
 
           <a
-            href={repo.html_url}
+            href={repo.url}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
