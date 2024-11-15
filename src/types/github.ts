@@ -31,7 +31,6 @@ export interface GitHubRepo {
   id: string;
   name: string;
   description: string | null;
-  url: string;
   language: string | null;
   stargazerCount: number;
   updatedAt: string;
@@ -39,4 +38,5 @@ export interface GitHubRepo {
   primaryLanguage?: {
     name: string;
   };
+  url: string;
 } 

@@ -65,7 +65,7 @@ export function GitHubProjects() {
             id: repo.id,
             name: repo.name,
             description: repo.description || 'Sem descrição',
-            html_url: repo.url,
+            url: repo.url,
             stargazers_count: repo.stargazerCount,
             language: repo.primaryLanguage?.name,
             updatedAt: repo.updatedAt,
